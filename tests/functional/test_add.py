@@ -17,7 +17,7 @@ def test_add_no_matching_files(runner, local_repo):
     assert f"No files matched the pattern humphrey.md" in result.stdout
 
 
-def test_add_no_remote(runner, local_repo_with_file):
+def test_add_no_remote(runner, local_repo_with_file, fake_pat):
     result = runner.invoke(app, ["add", "humphrey.md"])
     assert result.exit_code == 0
     assert f"Oh no 😟 You haven't yet set a value for the key remote_repo" in result.stdout

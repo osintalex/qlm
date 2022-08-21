@@ -5,7 +5,7 @@ from asyncio import coroutine
 import pytest
 from typer.testing import CliRunner
 
-from tools.config_helpers import set_config, delete_config
+from qlm.tools.config_helpers import set_config, delete_config
 
 
 @pytest.fixture
@@ -63,3 +63,8 @@ async def fake_coroutine():
 def mock_add_files(mocker):
     mocked = mocker.patch("commands._add.add_files_to_github")
     mocked.return_value = fake_coroutine()
+
+
+@pytest.fixture()
+def mock_check_github_connection(mocker):
+    yield mocker.patch("commands._connect.check_github_connection")

@@ -12,12 +12,12 @@ from qlm.tools.config_helpers import show_configuration, set_config
 github_json_type: str = "application/vnd.github+json"
 
 
-def check_github_connection(github_token: str, remote: str) -> Response:
+def check_github_connection(github_token: str, remote: str) -> bool:
     """Tests that the user can connect to github.
 
     :param github_token: github PAT token.
     :param remote: path to the remote repo in format <user>/<repo name>
-    :return: API response.
+    :return: True if the connection is successful else False.
     :raise: exits with a bad API response.
     """
 
@@ -45,7 +45,8 @@ Did you make sure to specify the full name of the repo in the [yellow]<username>
             print(f"This is your current configuration: {show_configuration()}")
             raise Exit()
         set_config(key="remote_repo", value=f"{github_username}/{remote}")
-        return response
+        return True
+    return False
 
 
 def download_github_repository(github_token: str, remote: str) -> Response:
