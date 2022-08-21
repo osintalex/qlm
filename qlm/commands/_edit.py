@@ -8,9 +8,9 @@ from rich import print
 from rich.panel import Panel
 from httpx import Response
 
-from ..tools.config_helpers import get_text_editor, get_config, is_offline
-from ..validators.github import validate_github_pat_token
-from ..github.integrations import add_files_to_github, download_file
+from qlm.tools.config_helpers import get_text_editor, get_config, is_offline
+from qlm.validators.github import validate_github_pat_token
+from qlm.github.integrations import add_files_to_github, download_file
 
 
 def edit(file: str = Argument(..., help="The path to the file you want to edit relative to remote or local repo root.")

@@ -4,7 +4,7 @@ from typer import Argument, Exit
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import set_config
+from qlm.tools.config_helpers import set_config
 
 
 def offline(local: str = Argument(..., help="The absolute path to the local directory where you want to keep "

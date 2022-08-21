@@ -7,9 +7,9 @@ from typer import Argument, Option, Exit, prompt
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import is_offline, get_config, make_note_to_add_files_later
-from ..validators.github import validate_github_pat_token
-from ..github.integrations import add_files_to_github
+from qlm.tools.config_helpers import is_offline, get_config, make_note_to_add_files_later
+from qlm.validators.github import validate_github_pat_token
+from qlm.github.integrations import add_files_to_github
 
 
 def add(files: str = Argument(..., help="The path to the file you want to add. Accepts wildcard syntax, "

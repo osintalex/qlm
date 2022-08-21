@@ -2,9 +2,9 @@ from typer import Argument
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import set_config
-from ..validators.github import validate_github_pat_token
-from ..github.integrations import check_github_connection
+from qlm.tools.config_helpers import set_config
+from qlm.validators.github import validate_github_pat_token
+from qlm.github.integrations import check_github_connection
 
 
 def connect(remote: str = Argument(..., help="The name of the remote github repository where your notes are, "

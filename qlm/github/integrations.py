@@ -7,7 +7,7 @@ from httpx import Response, AsyncClient
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import show_configuration, set_config
+from qlm.tools.config_helpers import show_configuration, set_config
 
 github_json_type: str = "application/vnd.github+json"
 

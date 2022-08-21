@@ -8,7 +8,7 @@ from rich.panel import Panel
 from typer import Exit
 from pydantic import BaseModel, ValidationError, validator
 
-from ..tools.config_helpers import CONFIG_TYPE
+from qlm.tools.config_helpers import CONFIG_TYPE
 
 
 allowed_github_repo: Pattern = compile(r"[A-Za-z0-9_.\-/]+")

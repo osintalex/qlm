@@ -7,9 +7,9 @@ from rich.console import Console
 from rich.markdown import Markdown
 from httpx import Response
 
-from ..tools.config_helpers import is_offline, get_config
-from ..validators.github import validate_github_pat_token
-from ..github.integrations import download_file
+from qlm.tools.config_helpers import is_offline, get_config
+from qlm.validators.github import validate_github_pat_token
+from qlm.github.integrations import download_file
 
 console = Console()
 

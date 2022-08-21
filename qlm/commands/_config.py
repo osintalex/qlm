@@ -5,9 +5,9 @@ from typer import Option, Exit
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import show_configuration, set_config, remove_offline_files_list, \
+from qlm.tools.config_helpers import show_configuration, set_config, remove_offline_files_list, \
     CONFIG_TYPE, rewrite_config
-from ..validators.config import validate_new_config, must_be_executable, path_must_exist, must_be_allowed_by_github, validate_offline_flag
+from qlm.validators.config import validate_new_config, must_be_executable, path_must_exist, must_be_allowed_by_github, validate_offline_flag
 
 
 def config(editor: str = Option("", "--editor", "-e", help="The command to open the text editor you want to use, i.e. "

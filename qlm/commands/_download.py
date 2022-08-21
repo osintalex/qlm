@@ -7,10 +7,10 @@ from rich import print
 from rich.panel import Panel
 from httpx import Response
 
-from ..tools.config_helpers import is_offline, get_config
-from ..validators.github import validate_github_pat_token
-from ..validators.config import must_be_allowed_by_github
-from ..github.integrations import download_github_repository
+from qlm.tools.config_helpers import is_offline, get_config
+from qlm.validators.github import validate_github_pat_token
+from qlm.validators.config import must_be_allowed_by_github
+from qlm.github.integrations import download_github_repository
 
 
 def download(local: str = Argument(..., help="The absolute path to where you want to keep your notes"),

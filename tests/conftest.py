@@ -1,8 +1,9 @@
-import pytest
 import os
-
-from typer.testing import CliRunner
 from tempfile import TemporaryDirectory
+from asyncio import coroutine
+
+import pytest
+from typer.testing import CliRunner
 
 from tools.config_helpers import set_config, delete_config
 
@@ -37,3 +38,28 @@ def remote_repo():
     set_config(key="remote_repo", value="codevarna")
     yield "codevarna"
     delete_config(key="remote_repo")
+
+
+@pytest.fixture()
+def online_mode():
+    set_config(key="offline", value=False)
+    yield
+    set_config(key="offline", value=True)
+
+
+@pytest.fixture()
+def fake_pat():
+    os.environ["qlm_token"] = "t0k3n4thewin"
+    yield
+    os.environ.pop("qlm_token")
+
+
+@coroutine
+async def fake_coroutine():
+    pass
+
+
+@pytest.fixture()
+def mock_add_files(mocker):
+    mocked = mocker.patch("commands._add.add_files_to_github")
+    mocked.return_value = fake_coroutine()

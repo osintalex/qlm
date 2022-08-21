@@ -1,16 +1,7 @@
 import os
 
 from qlm.main import app
-from tools.config_helpers import get_config, delete_config
-
-
-def test_help_text(runner):
-    result = runner.invoke(app, ["--help"])
-    assert result.exit_code == 0
-    assert " Usage: root [OPTIONS] COMMAND [ARGS]..." in result.stdout
-    for x in {"add", "config", "connect", "create", "download", "edit", "get",
-              "ls", "offline", "publish", "rm", "show"}:
-        assert x in result.stdout
+from qlm.tools.config_helpers import get_config, delete_config, show_configuration
 
 
 def test_add_no_local(runner):
@@ -21,6 +12,7 @@ def test_add_no_local(runner):
 
 def test_add_no_matching_files(runner, local_repo):
     result = runner.invoke(app, ["add", "humphrey.md"])
+    print(show_configuration())
     assert result.exit_code == 0
     assert f"No files matched the pattern humphrey.md" in result.stdout
 
@@ -42,4 +34,13 @@ def test_add_offline(runner, local_repo_with_file, remote_repo):
     delete_config(key="offline_files_to_add")
 
 
-# TODO: Test add online but with a mock
+def test_add_online_no_pat(runner, local_repo_with_file, remote_repo, online_mode):
+    result = runner.invoke(app, ["add", "humphrey.md", "--force"])
+    assert result.exit_code == 0
+    assert "You didn't set the qlm_token environment variable" in result.stdout
+
+
+def test_add_online(runner, local_repo_with_file, remote_repo, online_mode, fake_pat, mock_add_files):
+    result = runner.invoke(app, ["add", "humphrey.md", "--force"])
+    assert result.exit_code == 0
+    assert "Successfully added files: ['humphrey.md'] to repo codevarna" in result.stdout

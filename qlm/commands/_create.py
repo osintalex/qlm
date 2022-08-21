@@ -2,9 +2,9 @@ from typer import Argument, Option, prompt, Exit
 from rich import print
 from rich.panel import Panel
 
-from ..github.integrations import create_new_repo
-from ..validators.github import validate_github_pat_token
-from ..tools.config_helpers import set_config
+from qlm.github.integrations import create_new_repo
+from qlm.validators.github import validate_github_pat_token
+from qlm.tools.config_helpers import set_config
 
 
 def create(repo_name: str = Argument(..., help="The name of the new repo to create"),

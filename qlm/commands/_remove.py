@@ -4,10 +4,10 @@ from typer import Argument, Option, Exit, prompt
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import is_offline, get_config
-from ..validators.github import validate_github_pat_token
-from ..validators.files import validate_file_exists
-from ..github.integrations import delete_file
+from qlm.tools.config_helpers import is_offline, get_config
+from qlm.validators.github import validate_github_pat_token
+from qlm.validators.files import validate_file_exists
+from qlm.github.integrations import delete_file
 
 
 def rm(file: str = Argument(..., help="The file you want to remove"),

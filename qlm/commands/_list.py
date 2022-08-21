@@ -5,10 +5,10 @@ from rich import print
 from rich.panel import Panel
 from httpx import Response
 
-from ..tools.config_helpers import is_offline, get_config
-from ..tools.files import filter_for_markdown_files_only
-from ..validators.github import validate_github_pat_token
-from ..github.integrations import get_files_in_github_repo
+from qlm.tools.config_helpers import is_offline, get_config
+from qlm.tools.files import filter_for_markdown_files_only
+from qlm.validators.github import validate_github_pat_token
+from qlm.github.integrations import get_files_in_github_repo
 
 
 def ls(directory: Optional[str] = Argument(None, help="The directory you want to list the contents of. Defaults to "

@@ -5,9 +5,9 @@ from typer import Option, Exit, prompt
 from rich import print
 from rich.panel import Panel
 
-from ..tools.config_helpers import is_offline, get_config, remove_offline_files_list
-from ..validators.github import validate_github_pat_token
-from ..github.integrations import add_files_to_github
+from qlm.tools.config_helpers import is_offline, get_config, remove_offline_files_list
+from qlm.validators.github import validate_github_pat_token
+from qlm.github.integrations import add_files_to_github
 
 
 def publish(
