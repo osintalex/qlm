@@ -12,7 +12,7 @@ from qlm.github.integrations import delete_file
 
 def rm(file: str = Argument(..., help="The file you want to remove"),
        force: bool = Option(False, "--force", "-f", help="Remove the file without prompting for confirmation")
-         ) -> None:
+       ) -> None:
     """
     Removes a file :smiling_imp:
     """
@@ -25,11 +25,7 @@ def rm(file: str = Argument(..., help="The file you want to remove"),
             answer: str = prompt(f"Are you sure you want to delete the file {file}? [y/n]")
             if answer != "y":
                 raise Exit()
-        try:
-            remove(path_to_file)
-        except PermissionError:
-            print(Panel("[bold red1]Doh :person_facepalming: You don't have permission to remove that file :cry:"))
-            raise Exit()
+        remove(path_to_file)
     else:
         if not force:
             answer: str = prompt(f"Are you sure you want to delete the file {file}? [y/n]")

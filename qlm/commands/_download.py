@@ -29,7 +29,11 @@ def download(local: str = Argument(..., help="The absolute path to where you wan
 
     github_token: str = validate_github_pat_token()
     if remote:
-        remote: str = must_be_allowed_by_github(remote)
+        try:
+            remote: str = must_be_allowed_by_github(remote)
+        except ValueError:
+            print(Panel(f"[bold red_1]The characters in {remote} are not allowed by github :cry:"))
+            raise Exit()
     else:
         remote: str = get_config(key="remote_repo")
 
@@ -41,4 +45,5 @@ def download(local: str = Argument(..., help="The absolute path to where you wan
         with ZipFile(zip_file_path, "r") as zip_f:
             archive_folder_name: str = zip_f.namelist()[0]
             zip_f.extractall(local)
-    print(Panel(f"[bold green]Successfully downloaded repo to directory: [yellow]{os.path.join(local, archive_folder_name)}"))
+    print(Panel(f"[bold green]Successfully downloaded repo to directory: [yellow]"
+                f"{os.path.join(local, archive_folder_name)}"))

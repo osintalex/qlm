@@ -1,6 +1,6 @@
 import os
 from tempfile import TemporaryDirectory
-from asyncio import coroutine
+from asyncio import coroutine, run
 
 import pytest
 from typer.testing import CliRunner
@@ -17,7 +17,7 @@ def runner():
 def local_repo():
     tmpdir = TemporaryDirectory()
     set_config(key="local_repo", value=tmpdir.name)
-    yield
+    yield tmpdir
     tmpdir.cleanup()
     delete_config(key="local_repo")
 
@@ -40,14 +40,14 @@ def remote_repo():
     delete_config(key="remote_repo")
 
 
-@pytest.fixture()
+@pytest.fixture
 def online_mode():
     set_config(key="offline", value=False)
     yield
     set_config(key="offline", value=True)
 
 
-@pytest.fixture()
+@pytest.fixture
 def fake_pat():
     os.environ["qlm_token"] = "t0k3n4thewin"
     yield
@@ -59,12 +59,39 @@ async def fake_coroutine():
     pass
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_add_files(mocker):
-    mocked = mocker.patch("commands._add.add_files_to_github")
-    mocked.return_value = fake_coroutine()
+    mocked = mocker.patch("qlm.commands._add.add_files_to_github")
+    mocked.return_value = run(fake_coroutine())
 
 
-@pytest.fixture()
+@pytest.fixture
+def mock_delete_file(mocker):
+    mocker.patch("qlm.commands._remove.delete_file")
+
+
+@pytest.fixture
 def mock_check_github_connection(mocker):
-    yield mocker.patch("commands._connect.check_github_connection")
+    yield mocker.patch("qlm.commands._connect.check_github_connection")
+
+
+@pytest.fixture
+def mock_download_github_repository(mocker):
+    yield mocker.patch("qlm.commands._download.download_github_repository")
+
+
+@pytest.fixture
+def mock_call_to_editor(mocker):
+    yield mocker.patch("qlm.commands._edit.os.system")
+
+
+@pytest.fixture
+def mock_add_files_after_editing(mocker):
+    mocked = mocker.patch("qlm.commands._edit.add_files_to_github")
+    mocked.return_value = run(fake_coroutine())
+    yield mocked
+
+
+@pytest.fixture
+def mock_download_file(mocker):
+    yield mocker.patch("qlm.commands._edit.download_file")
