@@ -40,13 +40,13 @@ def test_edit_online_no_remote(runner, online_mode, fake_pat):
     assert "Oh no 😟 You haven't yet set a value for the key remote_repo" in result.stdout
 
 
-def test_edit_online(runner, online_mode, fake_pat, remote_repo, mock_call_to_editor, mock_download_file,
+def test_edit_online(runner, online_mode, fake_pat, remote_repo, mock_call_to_editor, mock_download_file_for_edit,
                      mock_add_files_after_editing):
     class DummyResponse:
         @staticmethod
         def json():
             return {"content": b'YWJj'}
-    mock_download_file.return_value = DummyResponse
+    mock_download_file_for_edit.return_value = DummyResponse
     result = runner.invoke(app, ["edit", "magicfile.md"])
     assert result.exit_code == 0
     mock_call_to_editor.assert_called_once()

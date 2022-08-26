@@ -5,6 +5,7 @@ from typer import Argument, Option, Exit
 from rich import print
 from rich.console import Console
 from rich.markdown import Markdown
+from rich.panel import Panel
 from httpx import Response
 
 from qlm.tools.config_helpers import is_offline, get_config
@@ -25,7 +26,7 @@ def show(file: str = Argument(..., help="The path to the file you want see."),
         local_repo: str = get_config(key="local_repo")
         path_to_local_file: str = path.join(local_repo, file)
         if not path.exists(path_to_local_file):
-            print(f"Hey dickhead there is nothing at {path_to_local_file}")
+            print(Panel(f"[bold red1]The file [cyan]{file}[/cyan] does not exist :sob:"))
             raise Exit()
         with open(path_to_local_file, "r") as f:
             file_contents: str = f.read()

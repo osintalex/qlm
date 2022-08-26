@@ -93,5 +93,10 @@ def mock_add_files_after_editing(mocker):
 
 
 @pytest.fixture
-def mock_download_file(mocker):
+def mock_download_file_for_edit(mocker):
     yield mocker.patch("qlm.commands._edit.download_file")
+
+
+@pytest.fixture
+def mock_download_file_for_show(mocker):
+    yield mocker.patch("qlm.commands._show.download_file")
