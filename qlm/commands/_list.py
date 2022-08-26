@@ -11,7 +11,7 @@ from qlm.validators.github import validate_github_pat_token
 from qlm.github.integrations import get_files_in_github_repo
 
 
-def ls(directory: Optional[str] = Argument(None, help="The directory you want to list the contents of. Defaults to "
+def ls(directory: Optional[str] = Argument("", help="The directory you want to list the contents of. Defaults to "
                                                       "the repo root if omitted."),
         non_markdown: bool = Option(False, "--non-markdown", "-nm", help="Also list files that aren't markdown"),
          ) -> None:
@@ -21,13 +21,11 @@ def ls(directory: Optional[str] = Argument(None, help="The directory you want to
     To switch into online mode, run [bold cyan]qlm connect.
     """
     if is_offline():
-        print(Panel("[bold red1]This command is for listing files in a remote only. Use [cyan]ls[/cyan] or "
+        print(Panel("[bold red1]You aren't connected to a remote. This command is for listing files in a remote. Use [cyan]ls[/cyan] or "
                     "[cyan]dir[/cyan] for working with local files."))
     else:
         remote: str = get_config(key="remote_repo")
         github_token: str = validate_github_pat_token()
-        if not directory:
-            directory = ""
         response: Response = get_files_in_github_repo(github_token=github_token, remote=remote,
                                                       directory_path=directory)
         if not isinstance(response.json(), list):

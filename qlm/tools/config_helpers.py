@@ -52,14 +52,19 @@ def get_config(key: str) -> Optional[Union[str, bool, List[Dict[str, str]]]]:
 
 
 def delete_config(key: str) -> None:
-    """Utility function to remove a given key's value from the config. Used in tests.
+    """Utility function to remove a given key's value from the config.
 
     :param key: the name of the config key to set the value of.
+    :raise: Exits the program if the key doesn't exist.
     """
 
     with open(config_filepath, "r") as f:
         config_data: CONFIG_TYPE = json.load(f)
-    config_data.pop(key)
+    try:
+        config_data.pop(key)
+    except KeyError:
+        print(Panel(f"[bold red1]You haven't set the key {key} yet :cry:"))
+        raise Exit()
     with open(config_filepath, "w") as f:
         json.dump(config_data, f)
 

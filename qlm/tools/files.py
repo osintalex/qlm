@@ -8,4 +8,4 @@ def filter_for_markdown_files_only(file_list: List[str]) -> List[str]:
     :param file_list: list of files to filter.
     :return: filtered list of files.
     """
-    return [x for x in file_list if os.path.splitext(x)[-1].lower().endswith("md")]
+    return [x for x in file_list if os.path.splitext(x)[-1].lower() == ".md"]

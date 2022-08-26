@@ -48,6 +48,11 @@ def online_mode():
 
 
 @pytest.fixture
+def offline_files():
+    set_config(key="offline_files_to_add", value=[{"repo_filepath": "x", "local_filepath": "y", "remote": "z"}])
+
+
+@pytest.fixture
 def fake_pat():
     os.environ["qlm_token"] = "t0k3n4thewin"
     yield
@@ -62,12 +67,18 @@ async def fake_coroutine():
 @pytest.fixture
 def mock_add_files(mocker):
     mocked = mocker.patch("qlm.commands._add.add_files_to_github")
-    mocked.return_value = run(fake_coroutine())
+    mocked.return_value = fake_coroutine()
 
 
 @pytest.fixture
 def mock_delete_file(mocker):
     mocker.patch("qlm.commands._remove.delete_file")
+
+
+@pytest.fixture
+def mock_publish_files(mocker):
+    mocked = mocker.patch("qlm.commands._publish.add_files_to_github")
+    mocked.return_value = fake_coroutine()
 
 
 @pytest.fixture
@@ -88,7 +99,7 @@ def mock_call_to_editor(mocker):
 @pytest.fixture
 def mock_add_files_after_editing(mocker):
     mocked = mocker.patch("qlm.commands._edit.add_files_to_github")
-    mocked.return_value = run(fake_coroutine())
+    mocked.return_value = fake_coroutine()
     yield mocked
 
 
@@ -100,3 +111,14 @@ def mock_download_file_for_edit(mocker):
 @pytest.fixture
 def mock_download_file_for_show(mocker):
     yield mocker.patch("qlm.commands._show.download_file")
+
+
+@pytest.fixture
+def mock_repo_creation(mocker):
+    mocked = mocker.patch("qlm.commands._create.create_new_repo")
+    mocked.return_value = "codevarna"
+
+
+@pytest.fixture
+def mock_get_files(mocker):
+    yield mocker.patch("qlm.commands._list.get_files_in_github_repo")

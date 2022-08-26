@@ -1,5 +1,3 @@
-import os
-
 from qlm.main import app
 
 
