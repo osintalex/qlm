@@ -14,7 +14,7 @@ def validate_file_path_is_empty(filepath: str):
     """
 
     if path.exists(filepath):
-        print(f"Yo dumbass there is already a file at {filepath}")
+        print(Panel(f"[bold red1]There is already a file at: [yellow]{filepath}[/yellow] :eek:"))
         raise Exit()
 
 

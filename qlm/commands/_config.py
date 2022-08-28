@@ -1,13 +1,9 @@
-from typing import Dict, Any
-import json
-
 from typer import Option, Exit
 from rich import print
 from rich.panel import Panel
 
-from qlm.tools.config_helpers import show_configuration, set_config, remove_offline_files_list, \
-    CONFIG_TYPE, rewrite_config
-from qlm.validators.config import validate_new_config, must_be_executable, path_must_exist, must_be_allowed_by_github, validate_offline_flag
+from qlm.tools.config_helpers import show_configuration, set_config, remove_offline_files_list
+from qlm.validators.config import must_be_executable, path_must_exist, must_be_allowed_by_github, validate_offline_flag
 
 
 def config(editor: str = Option("", "--editor", "-e", help="The command to open the text editor you want to use, i.e. "
@@ -24,10 +20,6 @@ def config(editor: str = Option("", "--editor", "-e", help="The command to open 
                                                                       "use, i.e. <username>/<repo>"),
            hide_key: str = Option("", "--hide-key", "-hk", help="Don't print out a specific key in the configuration "
                                                                 "output"),
-           overwrite_config: str = Option("", "--overwrite-config", "-oc",
-                                           help="Overwrite your current configuration with a new JSON file, i.e. "
-                                                "[bold cyan]qlm -oc my_new_config.json[/bold cyan]. You may want to "
-                                                "run [bold cyan]qlm config > my_new_config.json[/bold cyan] first."),
            offline: str = Option(True, "--offline", "-o", help="Set offline to True or False. Defaults to True."),
 
            ) -> None:
@@ -59,11 +51,6 @@ def config(editor: str = Option("", "--editor", "-e", help="The command to open 
 github. You can only use latin letters, numbers, forward slashes, underscores, full stops and hyphens"""))
             raise Exit()
         set_config(key="remote_repo", value=remote_repo)
-    if overwrite_config:
-        with open(overwrite_config, "r") as f:
-            user_config: Dict[str, Any] = json.load(f)
-        validated_config_input: CONFIG_TYPE = validate_new_config(user_config=user_config)
-        rewrite_config(new_config_data=validated_config_input)
     if offline:
         try:
             validated: bool = validate_offline_flag(value=offline)

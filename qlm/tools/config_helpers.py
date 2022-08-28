@@ -84,7 +84,7 @@ def get_text_editor() -> str:
     return config_data["text_editor"]
 
 
-def show_configuration(hide_key: str = None) -> str:
+def show_configuration(hide_key: str = None) -> CONFIG_TYPE:
     """Utility method to get the contents of the `config.json` file.
 
     :param hide_key: key to mask from output
@@ -95,7 +95,7 @@ def show_configuration(hide_key: str = None) -> str:
         config_data: CONFIG_TYPE = json.load(f)
         if hide_key:
             config_data.pop(hide_key)
-        return json.dumps(config_data, sort_keys=True, indent=4)
+        return config_data
 
 
 def make_note_to_add_files_later(repo_path_to_files: List[str],
@@ -135,13 +135,3 @@ def remove_offline_files_list() -> None:
         raise Exit
     with open(config_filepath, "w") as f:
         json.dump(config_data, f)
-
-
-def rewrite_config(new_config_data: CONFIG_TYPE) -> None:
-    """Fully rewrites the configuration with user supplied data.
-
-    :param new_config_data: The user supplied configuration data.
-    """
-
-    with open(config_filepath, "w") as f:
-        json.dump(new_config_data, f)

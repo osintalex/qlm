@@ -14,7 +14,7 @@ from qlm.github.integrations import download_file
 
 def get(file: str = Argument(..., help="Path to the remote file you want to download"),
         rename: str = Option("", "--rename", "-r", help="Rename the file you want to download"),
-        filepath: str = Option("", "--filepath", "-fp", help="The local path to save the file to. If not specified, "
+        directory: str = Option("", "--directory", "-d", help="The local directory to save the file to. If not specified, "
                                                              "qlm will download the file to your current working "
                                                              "directory.")) -> None:
     """
@@ -28,12 +28,12 @@ def get(file: str = Argument(..., help="Path to the remote file you want to down
     github_token: str = validate_github_pat_token()
     file_data: Dict[str, str] = download_file(github_token=github_token, file=file,
                                               remote=get_config(key="remote_repo")).json()
-    if filepath and rename:
-        filepath_to_write: str = path.join(filepath, rename)
-    elif not filepath and rename:
+    if directory and rename:
+        filepath_to_write: str = path.join(directory, rename)
+    elif not directory and rename:
         filepath_to_write: str = path.join(getcwd(), rename)
-    elif filepath and not rename:
-        filepath_to_write: str = path.join(filepath, file_data["name"])
+    elif directory and not rename:
+        filepath_to_write: str = path.join(directory, file_data["name"])
     else:
         filepath_to_write: str = path.join(getcwd(), file_data["name"])
     validate_file_path_is_empty(filepath_to_write)

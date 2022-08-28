@@ -1,6 +1,6 @@
 import os
 from tempfile import TemporaryDirectory
-from asyncio import coroutine, run
+from asyncio import coroutine
 
 import pytest
 from typer.testing import CliRunner
@@ -111,6 +111,11 @@ def mock_download_file_for_edit(mocker):
 @pytest.fixture
 def mock_download_file_for_show(mocker):
     yield mocker.patch("qlm.commands._show.download_file")
+
+
+@pytest.fixture
+def mock_download_file_for_get(mocker):
+    yield mocker.patch("qlm.commands._get.download_file")
 
 
 @pytest.fixture
