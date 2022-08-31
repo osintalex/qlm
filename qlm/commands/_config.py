@@ -31,16 +31,16 @@ def config(editor: str = Option("", "--editor", "-e", help="The command to open 
         try:
             must_be_executable(editor)
         except ValueError:
-            print(Panel(f"[bold red1]The text editor [cyan]{editor}[/cyan] is not an executable"))
+            print(Panel(f"[bold red1]The text editor [cyan]{editor}[/cyan] is not an executable :confused:"))
             raise Exit()
-        set_config(key="text_editor", value=editor)
+        set_config(key="editor", value=editor)
     if empty_offline:
         remove_offline_files_list()
     if local_repo:
         try:
             path_must_exist(local_repo)
         except ValueError:
-            print(Panel(f"[bold red1]The path [cyan]{local_repo}[/cyan] does not exist"))
+            print(Panel(f"[bold red1]The path [cyan]{local_repo}[/cyan] does not exist :x:"))
             raise Exit()
         set_config(key="local_repo", value=local_repo)
     if remote_repo:

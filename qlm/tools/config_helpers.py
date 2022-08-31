@@ -69,21 +69,6 @@ def delete_config(key: str) -> None:
         json.dump(config_data, f)
 
 
-def get_text_editor() -> str:
-    """Gets the command to open a text editor of choice.
-
-    :return: The command to run the text editor of choice.
-    """
-
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
-    if not config_data.get("text_editor"):
-        config_data["text_editor"] = "vim"
-        with open(config_filepath, "w") as f:
-            json.dump(config_data, f)
-    return config_data["text_editor"]
-
-
 def show_configuration(hide_key: str = None) -> CONFIG_TYPE:
     """Utility method to get the contents of the `config.json` file.
 
