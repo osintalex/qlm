@@ -4,11 +4,17 @@ from rich import print
 from rich.panel import Panel
 from typer import Exit, Option
 
-from qlm.tools.config_helpers import (remove_offline_files_list, set_config,
-                                      show_configuration)
-from qlm.validators.config import (must_be_allowed_by_github,
-                                   must_be_executable, path_must_exist,
-                                   validate_offline_flag)
+from qlm.tools.config_helpers import (
+    remove_offline_files_list,
+    set_config,
+    show_configuration,
+)
+from qlm.validators.config import (
+    must_be_allowed_by_github,
+    must_be_executable,
+    path_must_exist,
+    validate_offline_flag,
+)
 
 
 # pylint: disable=too-many-arguments
@@ -56,8 +62,7 @@ def config(
     ),
 ) -> None:
     """
-    Display and edit your current configuration :zap:
-
+    Display and edit your current configuration :zap: a
     """
     if editor:
         try:

@@ -25,6 +25,9 @@ pytest-mock = "^3.8.2"
 mypy = "^0.971"
 pylint = "~2.13.0"
 
+[tool.isort]
+profile = "black"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
