@@ -1,8 +1,9 @@
-from shutil import which
-from re import fullmatch, compile, Pattern
-from typing import  Any
-from os.path import exists
+"""Validators for interacting with the config.json file."""
 
+from os.path import exists
+from re import Pattern, compile, fullmatch
+from shutil import which
+from typing import Any
 
 allowed_github_repo: Pattern = compile(r"[A-Za-z0-9_.\-/]+")
 
@@ -17,7 +18,9 @@ def validate_offline_flag(value: Any) -> bool:
 
     clean: str = value.strip().lower()
     if clean not in {"false", "true"}:
-        raise ValueError(f"The input {value} is not valid. Only True and False are allowed!")
+        raise ValueError(
+            f"The input {value} is not valid. Only True and False are allowed!"
+        )
     return {"false": False, "true": True}[clean]
 
 

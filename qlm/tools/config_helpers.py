@@ -1,13 +1,15 @@
-from typing import Dict, List, Union, NewType, Optional
-from os import path
+"""Tools for interacting with the config.json file."""
+
 import json
+from os import path
+from typing import Dict, List, NewType, Optional, Union, cast
 
 from rich import print
 from rich.panel import Panel
 from typer import Exit
 
-config_filepath: str = path.join(path.dirname(__file__), 'config.json')
-CONFIG_TYPE = NewType("CONFIG_TYPE", Dict[str, Union[str, bool, List[Dict[str, str]]]])
+config_filepath: str = path.join(path.dirname(__file__), "config.json")
+ConfigType = NewType("ConfigType", Dict[str, Union[str, bool, List[Dict[str, str]]]])
 
 
 def is_offline() -> bool:
@@ -16,9 +18,9 @@ def is_offline() -> bool:
     :return: True if it else else False.
     """
 
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
-    return config_data["offline"]
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
+    return cast(bool, config_data["offline"])
 
 
 def set_config(key: str, value: Union[str, bool, List[Dict[str, str]]]) -> None:
@@ -28,10 +30,10 @@ def set_config(key: str, value: Union[str, bool, List[Dict[str, str]]]) -> None:
     :param value: the value to set it to.
     """
 
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
     config_data[key] = value
-    with open(config_filepath, "w") as f:
+    with open(config_filepath, "w", encoding="utf-8") as f:
         json.dump(config_data, f)
 
 
@@ -42,12 +44,16 @@ def get_config(key: str) -> Optional[Union[str, bool, List[Dict[str, str]]]]:
     :return: the key's value.
     :raise: Exits the program if the key doesn't exist.
     """
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
     try:
         return config_data[key]
     except KeyError:
-        print(Panel(f"[bold red1]Oh no :worried: You haven't yet set a value for the key [cyan]{key}"))
+        print(
+            Panel(
+                f"[bold red1]Oh no :worried: You haven't yet set a value for the key [cyan]{key}"
+            )
+        )
         raise Exit
 
 
@@ -58,34 +64,34 @@ def delete_config(key: str) -> None:
     :raise: Exits the program if the key doesn't exist.
     """
 
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
     try:
         config_data.pop(key)
     except KeyError:
         print(Panel(f"[bold red1]You haven't set the key {key} yet :cry:"))
         raise Exit()
-    with open(config_filepath, "w") as f:
+    with open(config_filepath, "w", encoding="utf-8") as f:
         json.dump(config_data, f)
 
 
-def show_configuration(hide_key: str = None) -> CONFIG_TYPE:
+def show_configuration(hide_key: str = None) -> ConfigType:
     """Utility method to get the contents of the `config.json` file.
 
     :param hide_key: key to mask from output
     :return: Dictionary containing the configuration values.
     """
 
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
         if hide_key:
             config_data.pop(hide_key)
         return config_data
 
 
-def make_note_to_add_files_later(repo_path_to_files: List[str],
-                                 local_file_paths: List[str],
-                                 remotes: List[str]) -> None:
+def make_note_to_add_files_later(
+    repo_path_to_files: List[str], local_file_paths: List[str], remotes: List[str]
+) -> None:
     """Makes a note to add a file later to github using the `qlm publish` command.
 
     :param repo_path_to_files: paths relative to the repo root, i.e. what the will be in github.
@@ -93,15 +99,19 @@ def make_note_to_add_files_later(repo_path_to_files: List[str],
     :param remotes: The name of the remotes in which you want to add the file; has format <username>/<remote>.
     """
 
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
-        new_information: List[Dict[str, str]] = [{"repo_filepath": x, "local_filepath": y, "remote": z}
-                                                 for x, y, z in zip(repo_path_to_files, local_file_paths, remotes)]
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
+        new_information: List[Dict[str, str]] = [
+            {"repo_filepath": x, "local_filepath": y, "remote": z}
+            for x, y, z in zip(repo_path_to_files, local_file_paths, remotes)
+        ]
     if not config_data.get("offline_files_to_add"):
         config_data["offline_files_to_add"] = new_information
     else:
-        config_data["offline_files_to_add"] = config_data["offline_files_to_add"] + new_information
-    with open(config_filepath, "w") as f:
+        config_data["offline_files_to_add"] = (
+            cast(list, config_data["offline_files_to_add"]) + new_information
+        )
+    with open(config_filepath, "w", encoding="utf-8") as f:
         json.dump(config_data, f)
 
 
@@ -111,12 +121,12 @@ def remove_offline_files_list() -> None:
     :raise: Exits the program if the key doesn't exist.
     """
 
-    with open(config_filepath, "r") as f:
-        config_data: CONFIG_TYPE = json.load(f)
+    with open(config_filepath, "r", encoding="utf-8") as f:
+        config_data: ConfigType = json.load(f)
     try:
         config_data.pop("offline_files_to_add")
     except KeyError:
         print(Panel("[bold red1]You haven't set any offline files yet :cry:"))
         raise Exit
-    with open(config_filepath, "w") as f:
+    with open(config_filepath, "w", encoding="utf-8") as f:
         json.dump(config_data, f)

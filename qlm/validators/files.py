@@ -1,8 +1,10 @@
+"""Validators for file operations."""
+
 from os import path
 
-from typer import Exit
 from rich import print
 from rich.panel import Panel
+from typer import Exit
 
 
 def validate_file_path_is_empty(filepath: str):
@@ -14,7 +16,11 @@ def validate_file_path_is_empty(filepath: str):
     """
 
     if path.exists(filepath):
-        print(Panel(f"[bold red1]There is already a file at: [yellow]{filepath}[/yellow] :eek:"))
+        print(
+            Panel(
+                f"[bold red1]There is already a file at: [yellow]{filepath}[/yellow] :eek:"
+            )
+        )
         raise Exit()
 
 
@@ -26,8 +32,16 @@ def validate_file_exists(path_to_file: str):
     """
 
     if not path.exists(path_to_file):
-        print(Panel(f"[bold red1]This file: [yellow]{path_to_file}[/yellow] doesn't exist :cry:"))
+        print(
+            Panel(
+                f"[bold red1]This file: [yellow]{path_to_file}[/yellow] doesn't exist :cry:"
+            )
+        )
         raise Exit()
     if path.isdir(path_to_file):
-        print(Panel(f"[bold red1] This is a directory not a file:  [yellow]{path_to_file}[/yellow] :cry:"))
+        print(
+            Panel(
+                f"[bold red1] This is a directory not a file:  [yellow]{path_to_file}[/yellow] :cry:"
+            )
+        )
         raise Exit()

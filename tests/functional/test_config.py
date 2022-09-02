@@ -1,7 +1,7 @@
 import os
 
 from qlm.main import app
-from qlm.tools.config_helpers import set_config, delete_config
+from qlm.tools.config_helpers import delete_config, set_config
 
 
 def test_config(runner):
@@ -51,7 +51,10 @@ def test_config_local_repo(runner):
 def test_config_invalid_remote(runner):
     result = runner.invoke(app, ["config", "-rr", "not!allowed!&&"])
     assert result.exit_code == 0
-    assert "The remote not!allowed!&& contains characters that aren't allowed" in result.stdout
+    assert (
+        "The remote not!allowed!&& contains characters that aren't allowed"
+        in result.stdout
+    )
 
 
 def test_config_remote(runner):
@@ -64,7 +67,10 @@ def test_config_remote(runner):
 def test_config_invalid_offline(runner):
     result = runner.invoke(app, ["config", "--offline", "0"])
     assert result.exit_code == 0
-    assert "You can only use True or False to set the offline configuration value!" in result.stdout
+    assert (
+        "You can only use True or False to set the offline configuration value!"
+        in result.stdout
+    )
 
 
 def test_config_valid_offline(runner):

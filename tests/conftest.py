@@ -1,11 +1,11 @@
 import os
-from tempfile import TemporaryDirectory
 from asyncio import coroutine
+from tempfile import TemporaryDirectory
 
 import pytest
 from typer.testing import CliRunner
 
-from qlm.tools.config_helpers import set_config, delete_config
+from qlm.tools.config_helpers import delete_config, set_config
 
 
 @pytest.fixture
@@ -49,7 +49,10 @@ def online_mode():
 
 @pytest.fixture
 def offline_files():
-    set_config(key="offline_files_to_add", value=[{"repo_filepath": "x", "local_filepath": "y", "remote": "z"}])
+    set_config(
+        key="offline_files_to_add",
+        value=[{"repo_filepath": "x", "local_filepath": "y", "remote": "z"}],
+    )
 
 
 @pytest.fixture

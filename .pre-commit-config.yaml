@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: check-docstring-first
+      - id: end-of-file-fixer
+      - id: check-toml
+      - id: trailing-whitespace
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+  - repo: local
+    hooks:
+      - id: pylint
+        types: [ python ]
+        exclude: tests/
+        name: pylint
+        entry: poetry run pylint --rcfile=.pylintrc
+        language: python
+      - id: mypy
+        types: [ python ]
+        exclude: tests/
+        name: mypy
+        entry: poetry run mypy
+        language: python

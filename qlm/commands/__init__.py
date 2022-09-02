@@ -1,3 +1,5 @@
+"""Simplify command import syntax."""
+
 from ._add import add
 from ._config import config
 from ._connect import connect

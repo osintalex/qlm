@@ -1,13 +1,15 @@
-from typing import List, Dict, Optional
-from base64 import b64encode
+"""Module for interacting with the Github REST API."""
 
-from typer import Exit
+from base64 import b64encode
+from typing import Dict, List, Optional
+
 import httpx
-from httpx import Response, AsyncClient
+from httpx import AsyncClient, Response
 from rich import print
 from rich.panel import Panel
+from typer import Exit
 
-from qlm.tools.config_helpers import show_configuration, set_config
+from qlm.tools.config_helpers import set_config, show_configuration
 
 github_json_type: str = "application/vnd.github+json"
 
@@ -21,27 +23,37 @@ def check_github_connection(github_token: str, remote: str) -> bool:
     :raise: exits with a bad API response.
     """
 
-    response: Response = httpx.get(f"https://api.github.com/repos/{remote}", headers={
-        "Authorization": f"token {github_token}",
-        "Accept": github_json_type
-    })
+    response: Response = httpx.get(
+        f"https://api.github.com/repos/{remote}",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+    )
     if response.status_code == 200:
         set_config(key="remote_repo", value=remote)
-        return response
+        return True
     if response.status_code == 404 and "/" not in remote:
-        response: Response = httpx.get("https://api.github.com/user", headers={
-            "Authorization": f"token {github_token}",
-            "Accept": github_json_type
-        })
+        response = httpx.get(
+            "https://api.github.com/user",
+            headers={
+                "Authorization": f"token {github_token}",
+                "Accept": github_json_type,
+            },
+        )
         github_username: str = response.json()["login"]
-        response: Response = httpx.get(f"https://api.github.com/repos/{github_username}/{remote}", headers={
-            "Authorization": f"token {github_token}",
-            "Accept": github_json_type
-        })
+        response = httpx.get(
+            f"https://api.github.com/repos/{github_username}/{remote}",
+            headers={
+                "Authorization": f"token {github_token}",
+                "Accept": github_json_type,
+            },
+        )
         if response.status_code != 200:
-            print(Panel(f"""[bold red1]Could not connect to repository [yellow]{remote}[/yellow] :x:
+            print(
+                Panel(
+                    f"""[bold red1]Could not connect to repository [yellow]{remote}[/yellow] :x:
 Error code : [bold cyan]{response.status_code}[/bold cyan]
-Did you make sure to specify the full name of the repo in the [yellow]<username>/<repo>[/yellow] format?"""))
+Did you make sure to specify the full name of the repo in the [yellow]<username>/<repo>[/yellow] format?"""
+                )
+            )
             print(f"This is your current configuration: {show_configuration()}")
             raise Exit()
         set_config(key="remote_repo", value=f"{github_username}/{remote}")
@@ -58,13 +70,18 @@ def download_github_repository(github_token: str, remote: str) -> Response:
     :raise: exits with a bad API response.
     """
 
-    response: Response = httpx.get(f"https://api.github.com/repos/{remote}/zipball", headers={
-        "Authorization": f"token {github_token}",
-        "Accept": github_json_type
-    }, follow_redirects=True)
+    response: Response = httpx.get(
+        f"https://api.github.com/repos/{remote}/zipball",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+        follow_redirects=True,
+    )
     if response.status_code != 200:
-        print(Panel(f"""[bold red1]Could not download from repository [yellow]{remote}[/yellow] :x:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+        print(
+            Panel(
+                f"""[bold red1]Could not download from repository [yellow]{remote}[/yellow] :x:
+Error code : [bold cyan]{response.status_code}[/bold cyan]"""
+            )
+        )
         print(f"This is your current configuration: {show_configuration()}")
         raise Exit()
     return response
@@ -80,19 +97,26 @@ def download_file(github_token: str, remote: str, file: str) -> Response:
     :raise: exits with a bad API response.
     """
 
-    response: Response = httpx.get(f"https://api.github.com/repos/{remote}/contents/{file}", headers={
-        "Authorization": f"token {github_token}",
-        "Accept": github_json_type
-    }, follow_redirects=True)
+    response: Response = httpx.get(
+        f"https://api.github.com/repos/{remote}/contents/{file}",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+        follow_redirects=True,
+    )
     if response.status_code != 200:
-        print(Panel(f"""[bold red1]Could not get file[yellow]{file}[/yellow] :x:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+        print(
+            Panel(
+                f"""[bold red1]Could not get file[yellow]{file}[/yellow] :x:
+Error code : [bold cyan]{response.status_code}[/bold cyan]"""
+            )
+        )
         print(f"This is your current configuration: {show_configuration()}")
         raise Exit()
     return response
 
 
-def get_files_in_github_repo(github_token: str, remote: str, directory_path: str) -> Response:
+def get_files_in_github_repo(
+    github_token: str, remote: str, directory_path: str
+) -> Response:
     """Lists files in the supplied path of a github repository.
 
     :param github_token: github PAT token.
@@ -102,16 +126,22 @@ def get_files_in_github_repo(github_token: str, remote: str, directory_path: str
     :raise: exits with a bad API response.
     """
 
-    response: Response = httpx.get(f"https://api.github.com/repos/{remote}/contents/{directory_path}", headers={
-        "Authorization": f"token {github_token}",
-        "Accept": github_json_type
-    })
+    response: Response = httpx.get(
+        f"https://api.github.com/repos/{remote}/contents/{directory_path}",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+    )
     if response.status_code != 200:
-        print(f"[bold red]Oh no! :x: Could not get contents at {directory_path} in repo {remote}")
+        print(
+            f"[bold red]Oh no! :x: Could not get contents at {directory_path} in repo {remote}"
+        )
         print(f"Error code: {response.status_code}")
         print(f"This is your current configuration: {show_configuration()}")
-        print(Panel(f"""[bold red1]Could not get contents at [yellow]{directory_path}[/yellow] in repo [yellow]{remote}[/yellow] :x:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+        print(
+            Panel(
+                f"[bold red1]Could not get contents at [yellow]{directory_path}[/yellow] in repo"
+                f"[yellow]{remote}[/yellow] :x: Error code : [bold cyan]{response.status_code}[/bold cyan]"
+            )
+        )
         print(f"This is your current configuration: {show_configuration()}")
         raise Exit()
     return response
@@ -126,28 +156,38 @@ def delete_file(github_token: str, remote: str, file_path: str) -> None:
     :raise: Exits the program in case it can't get the hash which is required to delete the file from the remote.
     """
 
-    response: Response = httpx.get(f"https://api.github.com/repos/{remote}/contents/{file_path}", headers={
-        "Authorization": f"token {github_token}",
-        "Accept": github_json_type
-    }, follow_redirects=True)
+    response: Response = httpx.get(
+        f"https://api.github.com/repos/{remote}/contents/{file_path}",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+        follow_redirects=True,
+    )
     if response.status_code != 200:
-        print(Panel(f"""[bold red1]Could not get file hash for file [yellow]{file_path}[/yellow] :x:
+        print(
+            Panel(
+                f"""[bold red1]Could not get file hash for file [yellow]{file_path}[/yellow] :x:
 This is required to delete the file :cry:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+Error code : [bold cyan]{response.status_code}[/bold cyan]"""
+            )
+        )
         print(f"This is your current configuration: {show_configuration()}")
         raise Exit()
     file_sha_value: str = response.json()["sha"]
-    response: Response = httpx.request(method="delete",
-                                       url=f"https://api.github.com/repos/{remote}/contents/{file_path}", headers={
-            "Authorization": f"token {github_token}",
-            "Accept": github_json_type
-        }, json={
+    response = httpx.request(
+        method="delete",
+        url=f"https://api.github.com/repos/{remote}/contents/{file_path}",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+        json={
             "message": ":pen: deleted by qlm",
             "sha": file_sha_value,
-        })
+        },
+    )
     if response.status_code != 200:
-        print(Panel(f"""[bold red1]Could not get delete file [yellow]{file_path}[/yellow] in repo [yellow]{remote}[/yellow] :x:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+        print(
+            Panel(
+                f"[bold red1]Could not get delete file [yellow]{file_path}[/yellow] in repo"
+                f"[yellow]{remote}[/yellow] :x: Error code : [bold cyan]{response.status_code}[/bold cyan]"
+            )
+        )
         print(f"This is your current configuration: {show_configuration()}")
 
 
@@ -161,18 +201,25 @@ def create_new_repo(repo_name: str, public: bool, github_token: str) -> str:
     :raise: Exits in case of an API error.
     """
 
-    response: Response = httpx.post(f"https://api.github.com/user/repos", headers={
-        "Authorization": f"token {github_token}",
-        "Accept": github_json_type
-    }, json={"name": repo_name, "private": not public})
+    response: Response = httpx.post(
+        "https://api.github.com/user/repos",
+        headers={"Authorization": f"token {github_token}", "Accept": github_json_type},
+        json={"name": repo_name, "private": not public},
+    )
     if response.status_code not in {200, 201}:
-        print(Panel(f"""[bold red1]Could not create new repository [yellow]{repo_name}[/yellow] :x:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+        print(
+            Panel(
+                f"""[bold red1]Could not create new repository [yellow]{repo_name}[/yellow] :x:
+Error code : [bold cyan]{response.status_code}[/bold cyan]"""
+            )
+        )
         raise Exit()
     return response.json()["full_name"]
 
 
-async def add_files_to_github(files_to_publish: List[Dict[str, str]], github_token: str):
+async def add_files_to_github(
+    files_to_publish: List[Dict[str, str]], github_token: str
+) -> None:
     """Add files to github.
 
     :param files_to_publish: list of files to publish and respective information required to publish them, i.e.
@@ -186,20 +233,38 @@ async def add_files_to_github(files_to_publish: List[Dict[str, str]], github_tok
             request_url: str = f"https://api.github.com/repos/{x['remote']}/contents/{x['repo_filepath']}"
             with open(x["local_filepath"], "rb") as f:
                 file_content: str = b64encode(f.read()).decode()
-            file_sha: Optional[str] = await generate_file_sha_if_needed(repo_filepath=x["repo_filepath"], remote=x["remote"],
-                                                                        github_token=github_token)
-            payload: Dict[str, str] = {"message": ":pen: added by qlm", "content": file_content}
+            file_sha: Optional[str] = await generate_file_sha_if_needed(
+                repo_filepath=x["repo_filepath"],
+                remote=x["remote"],
+                github_token=github_token,
+            )
+            payload: Dict[str, str] = {
+                "message": ":pen: added by qlm",
+                "content": file_content,
+            }
             if file_sha:
                 payload["sha"] = file_sha
-            response: Response = await client.put(url=request_url, headers={"Authorization": f"token {github_token}",
-                                                                            "Accept": github_json_type}, json=payload)
+            response: Response = await client.put(
+                url=request_url,
+                headers={
+                    "Authorization": f"token {github_token}",
+                    "Accept": github_json_type,
+                },
+                json=payload,
+            )
             if response.status_code not in {200, 201}:
-                print(Panel(f"""[bold red1]Could not add file [yellow]{x['repo_filepath']}[/yellow]:x:
-Error code : [bold cyan]{response.status_code}[/bold cyan]"""))
+                print(
+                    Panel(
+                        f"""[bold red1]Could not add file [yellow]{x['repo_filepath']}[/yellow]:x:
+Error code : [bold cyan]{response.status_code}[/bold cyan]"""
+                    )
+                )
                 raise Exit()
 
 
-async def generate_file_sha_if_needed(repo_filepath: str, remote: str, github_token: str) -> Optional[str]:
+async def generate_file_sha_if_needed(
+    repo_filepath: str, remote: str, github_token: str
+) -> Optional[str]:
     """Generates the sha of a file in github if and only if the file is already in github, i.e. it will return None
     if the file is not already in github.
 
@@ -210,11 +275,16 @@ async def generate_file_sha_if_needed(repo_filepath: str, remote: str, github_to
     """
 
     async with AsyncClient() as client:
-        """
-        https://api.github.com/repos/osintalex/qlm-notes/contents/notes.md
-        """
-        request_url: str = f"https://api.github.com/repos/{remote}/contents/{repo_filepath}"
-        response: Response = await client.get(url=request_url, headers={"Authorization": f"token {github_token}",
-                                                                        "Accept": github_json_type})
+        request_url: str = (
+            f"https://api.github.com/repos/{remote}/contents/{repo_filepath}"
+        )
+        response: Response = await client.get(
+            url=request_url,
+            headers={
+                "Authorization": f"token {github_token}",
+                "Accept": github_json_type,
+            },
+        )
         if response.status_code == 200:
             return response.json()["sha"]
+    return None

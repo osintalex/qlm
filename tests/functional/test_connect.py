@@ -1,5 +1,4 @@
 from qlm.main import app
-
 from qlm.tools.config_helpers import set_config
 
 
@@ -20,7 +19,10 @@ def test_good_connect(runner, fake_pat, mock_check_github_connection):
     mock_check_github_connection.return_value = True
     result = runner.invoke(app, ["connect", "code-goodness"])
     assert result.exit_code == 0
-    assert "Success! You are connected to github repository code-goodness 💥" in result.stdout
+    assert (
+        "Success! You are connected to github repository code-goodness 💥"
+        in result.stdout
+    )
     set_config(key="offline", value=True)
 
 

@@ -1,12 +1,14 @@
 from qlm.main import app
-
 from qlm.tools.config_helpers import delete_config
 
 
 def test_publish_offline(runner):
     result = runner.invoke(app, ["publish"])
     assert result.exit_code == 0
-    assert "You have to be in online mode to publish files to your remote repo." in result.stdout
+    assert (
+        "You have to be in online mode to publish files to your remote repo."
+        in result.stdout
+    )
 
 
 def test_publish_no_token(runner, online_mode, offline_files):
