@@ -1,8 +1,13 @@
+"""Application entrypoint."""
+
 from typer import Typer
 
-from qlm.commands import add, config, connect, create, download, edit, get, ls, offline, publish, rm, show
+from qlm.commands import (add, config, connect, create, download, edit, get,
+                          ls, offline, publish, rm, show)
 
-app: Typer = Typer(no_args_is_help=True, pretty_exceptions_show_locals=False, rich_markup_mode="rich")
+app: Typer = Typer(
+    no_args_is_help=True, pretty_exceptions_show_locals=False, rich_markup_mode="rich"
+)
 app.command()(add)
 app.command()(config)
 app.command()(connect)
