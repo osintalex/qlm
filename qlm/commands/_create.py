@@ -21,7 +21,7 @@ def create(
 ) -> None:
     """
     Creates and connects to a new repository in github under your personal account. The repository is private by default
-     because privacy matters :fist:
+    because privacy matters :fist:
     """
 
     github_token: str = validate_github_pat_token()

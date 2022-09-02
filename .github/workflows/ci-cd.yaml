@@ -57,6 +57,6 @@ jobs:
       - name: publish to test pypi
         env:
           TEST_PYPYI_TOKEN: ${{ secrets.pypi_token }}
-        run: >
+        run: |
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry publish --build -r test-pypi -u __token__ -p $TEST_PYPYI_TOKEN

@@ -57,7 +57,6 @@ def config(
 ) -> None:
     """
     Display and edit your current configuration :zap:
-
     """
     if editor:
         try:
