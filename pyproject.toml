@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qlm"
-version = "0.1.0"
+version = "0.1.5"
 description = "A CLI program for taking notes"
 authors = ["Alexander Darby <63904626+osintalex@users.noreply.github.com>"]
 license = "MIT"
