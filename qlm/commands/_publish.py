@@ -46,7 +46,7 @@ def publish(
         answer: str = prompt("Do you wish to proceed? [y/n]")
         if answer != "y":
             raise Exit()
-
+    # pylint: disable=duplicate-code
     asyncio.run(
         add_files_to_github(
             files_to_publish=files_to_publish, github_token=github_token
