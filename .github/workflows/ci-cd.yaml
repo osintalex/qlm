@@ -16,7 +16,6 @@ jobs:
     env:
       PYTHON: ${{ matrix.python-version }}
       OS: ${{ matrix.os }}
-
     steps:
     - uses: actions/checkout@v3
     - name: install poetry
@@ -39,13 +38,9 @@ jobs:
           cache: 'poetry'
       - run: poetry install --with lint
       - name: Pylint
-        run: >
-          poetry run pylint --rcfile=.pylintrc $(git ls-files '*.py')
-          --ignore-paths=tests
+        run: poetry run pylint --rcfile=.pylintrc qlm/
       - name: MyPy
-        run: >
-          poetry run mypy $(git ls-files '*.py')
-          --ignore-paths=tests
+        run: poetry run mypy qlm/
   publish:
       needs: [test, lint]
       if: github.event_name == 'push'
