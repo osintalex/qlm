@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu, macos, windows]
+        os: [ubuntu, macos]
         python-version: ['3.7', '3.8', '3.9', '3.10']
     runs-on: ${{ matrix.os }}-latest
     env:
@@ -59,4 +59,4 @@ jobs:
           TEST_PYPYI_TOKEN: ${{ secrets.pypi_token }}
         run: >
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
-          poetry publish -r test-pypi -u __token__ -p $TEST_PYPYI_TOKEN
+          poetry publish --build -r test-pypi -u __token__ -p $TEST_PYPYI_TOKEN
