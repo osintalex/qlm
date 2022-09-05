@@ -1,0 +1,37 @@
+site_name: qlm
+nav:
+    - Home: index.md
+    - Introduction: introduction.md
+    - Reference: reference.md
+    - Contributing: contributing.md
+plugins:
+   - glightbox:
+       touchNavigation: true
+       loop: false
+       effect: zoom
+       width: 100%
+       height: auto
+       zoomable: true
+       draggable: true
+theme:
+  name: material
+  icon:
+    logo: material/pen
+  favicon: images/pen.svg
+  palette:
+  - scheme: slate
+    primary: deep orange
+    accent: amber
+repo_url: https://github.com/osintalex/qlm
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+extra:
+  version:
+    provider: mike
+extra_javascript:
+  - js/termynal.js
+extra_css:
+    - css/termynal.css

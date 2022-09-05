@@ -3,7 +3,9 @@ repos:
     rev: v4.1.0
     hooks:
       - id: check-added-large-files
+        exclude: docs/images/intro.gif
       - id: check-yaml
+        args: ['--unsafe']
       - id: check-docstring-first
       - id: end-of-file-fixer
       - id: check-toml
