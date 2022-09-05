@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/osintalex/qlm/blob/main/docs/images/pen-light.svg" alt="qlm" style="height:2rem;">
+  <img src="https://github.com/osintalex/qlm/raw/main/docs/images/pen-light.svg" alt="qlm" style="height:2rem;">
 </p>
 <p align="center">
   <em>A command line app for taking beautiful notes.</em>
@@ -23,7 +23,7 @@
 </p>
 
 ---
-![Intro](docs/images/intro.gif)
+![](https://github.com/osintalex/qlm/raw/main/docs/images/intro.gif)
 
 ___
 
