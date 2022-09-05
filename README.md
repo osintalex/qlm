@@ -1,6 +1,8 @@
-<div align="center" style="height:3rem;">
-  <img src="https://github.com/osintalex/qlm/raw/main/docs/images/pen-orange.svg" alt="qlm" height="100%" width="100%">
-</div>
+<p align="center">
+  <a href="https://osintalex.github.io/qlm/">
+    <img src="https://osintalex.github.io/qlm/img/logo-text.svg" alt="qlm">
+  </a>
+</p>
 <p align="center">
   <em>A command line app for taking beautiful notes.</em>
 </p>
