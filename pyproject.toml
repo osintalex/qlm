@@ -6,7 +6,7 @@ authors = ["Alexander Darby <63904626+osintalex@users.noreply.github.com>"]
 readme = "README.md"
 license = "CC0 1.0"
 classifiers = [
-    'Development Status :: 1 - Beta',
+    'Development Status :: 3 - Alpha',
     'Framework :: Pytest',
     'Intended Audience :: Developers',
     'Intended Audience :: Education',
