@@ -5,6 +5,7 @@ nav:
     - Reference: reference.md
     - Contributing: contributing.md
 plugins:
+   - search
    - glightbox:
        touchNavigation: true
        loop: false
@@ -19,7 +20,7 @@ theme:
     logo: material/pen
   favicon: images/pen.svg
   palette:
-  - scheme: slate
+  - scheme: default
     primary: deep orange
     accent: amber
 repo_url: https://github.com/osintalex/qlm
