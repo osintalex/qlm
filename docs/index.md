@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://github.com/osintalex/qlm/blob/main/docs/images/pen.svg" alt="qlm" style="height:2rem;">
-</p>
+![Logo](images/pen.svg){: style="height:2rem;display:block;margin: 0 auto;"}
 <p align="center">
   <em>A command line app for taking beautiful notes.</em>
 </p>
