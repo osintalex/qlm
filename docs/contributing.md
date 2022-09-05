@@ -34,3 +34,6 @@ Now, here are some commands you will need for local development:
 I'm not aiming at 100% test coverage in this project since I don't think there's much point
 testing the Github API integrations or Python builtins that interact with files. However,
 anything that tests the application's commands should include tests.
+
+If you do send in a pull request, please also update the package version in `pyproject.toml` and
+`qlm/__init__.py`.
