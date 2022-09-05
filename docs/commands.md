@@ -1,4 +1,4 @@
-# Reference
+# Commands
 
 ## `qlm --help` or `qlm`
 
@@ -19,13 +19,13 @@ $ [OPTIONS] COMMAND [ARGS]...
 * `add`: Add file(s) to your github remote
 * `config`: Display and edit your current configuration
 * `connect`: Checks if you can connect to github
-* `create`: Creates and connects to a new repository
+* `create`: Creates and connects to a new private repository
 * `download`: Downloads your notes from a remote
 * `edit`: Edit a file
 * `get`: Download a file from your remote
 * `ls`: Lists markdown files in your remote.
 * `offline`: Switch to working in offline mode
-* `publish`: Publishes files that were saved in offline
+* `publish`: Publishes files that were saved while offline
 * `rm`: Removes a file
 * `show`: Prints your file to the console
 

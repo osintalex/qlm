@@ -2,7 +2,7 @@ site_name: qlm
 nav:
     - Home: index.md
     - Introduction: introduction.md
-    - Reference: reference.md
+    - Commands: commands.md
     - Contributing: contributing.md
 plugins:
    - search
