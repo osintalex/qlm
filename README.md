@@ -34,6 +34,4 @@ The name comes from the Arabic word for pen:
 ## قلم
 
 which makes use of the three letter root _q-l-m_ to cut, snip, prune, clip or truncate. So
-try to keep those notes concise!
-
-:wink:
+try to keep those notes concise ;-)
