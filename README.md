@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://osintalex.github.io/qlm/">
-    <img src="https://osintalex.github.io/qlm/img/logo-text.svg" alt="qlm">
+    <img src="https://osintalex.github.io/qlm/images/pen.svg" alt="qlm">
   </a>
 </p>
 <p align="center">
