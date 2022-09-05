@@ -66,7 +66,7 @@ run `qlm publish` to add them to your remote.
 
 <div id="termynal" data-termynal>
     <span data-ty="input">qlm offline 'folder to keep notes in'</span>
-    <span data-ty="input">echo '# Example' > example.md</span>
+    <span data-ty="input">echo '# Example' > folder_with_notes/example.md</span>
     <span data-ty="input">qlm add example.md</span>
     <span data-ty="input">qlm connect 'username/repo'</span>
     <span data-ty="input">qlm publish</span>
