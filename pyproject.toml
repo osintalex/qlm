@@ -1,10 +1,32 @@
 [tool.poetry]
 name = "qlm"
-version = "0.1.9"
-description = "A CLI program for taking notes"
+version = "0.1.10"
+description = "A command line app for taking beautiful notes. "
 authors = ["Alexander Darby <63904626+osintalex@users.noreply.github.com>"]
-license = "MIT"
 readme = "README.md"
+license = "CC0 1.0"
+classifiers = [
+    'Development Status :: 1 - Beta',
+    'Framework :: Pytest',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Education',
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: System Administrators',
+    'Operating System :: Unix',
+    'Operating System :: POSIX :: Linux',
+    'Environment :: Console',
+    'Environment :: MacOS X',
+    'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Internet',
+    'Typing :: Typed',
+]
 
 [tool.poetry.scripts]
 qlm = "qlm.main:app"
