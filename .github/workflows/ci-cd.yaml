@@ -74,9 +74,7 @@ jobs:
           python-version: '3.10'
           cache: 'poetry'
       - run: poetry install
-      - name: publish to test pypi
+      - name: publish to pypi
         env:
-          TEST_PYPYI_TOKEN: ${{ secrets.pypi_token }}
-        run: |
-          poetry config repositories.test-pypi https://test.pypi.org/legacy/
-          poetry publish --build -r test-pypi -u __token__ -p $TEST_PYPYI_TOKEN
+          PYPI_TOKEN: ${{ secrets.pypi_token }}
+        run: poetry publish --build -u __token__ -p PYPI_TOKEN
