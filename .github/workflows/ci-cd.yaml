@@ -25,9 +25,13 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'
     - run: poetry install --with test
-    - run: poetry run pytest --cov qlm
+    - run: poetry run pytest --cov qlm --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
+        name: ${{ matrix.os }}-${{ matrix.python-version }}
   lint:
     runs-on: ubuntu-latest
     steps:

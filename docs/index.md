@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/images/pen.svg" alt="qlm" style="height:2rem;">
+  <img src="https://github.com/osintalex/qlm/blob/main/docs/images/pen.svg" alt="qlm" style="height:2rem;">
 </p>
 <p align="center">
   <em>A command line app for taking beautiful notes.</em>
@@ -8,9 +8,9 @@
   <a href="https://github.com/osintalex/qlm/actions?query=event%3Apush+branch%3Amain+workflow%3ACI">
     <img src="https://github.com/osintalex/qlm/workflows/ci-cd/badge.svg?event=push" alt="CI">
   </a>
-  <a href="https://codecov.io/gh/osintalex/qlm">
-    <img src="https://codecov.io/gh/osintalex/qlm/branch/main/graph/badge.svg" alt="Coverage">
-  </a>
+<a href="https://codecov.io/gh/osintalex/qlm" >
+ <img src="https://codecov.io/gh/osintalex/qlm/branch/main/graph/badge.svg?token=L82UIFTL0D"/>
+ </a>
   <a href="https://pypi.python.org/pypi/qlm">
     <img src="https://img.shields.io/pypi/v/qlm.svg" alt="pypi">
   </a>
