@@ -35,3 +35,13 @@ which makes use of the three letter root _q-l-m_ to cut, snip, prune, clip or tr
 try to keep those notes concise!
 
 :wink:
+
+## Basic Usage
+
+```commandline
+pip install qlm
+qlm connect 'username/repo'
+echo '# My notes' > my_note.md
+qlm add my_note.md
+qlm show my_note.md
+```
