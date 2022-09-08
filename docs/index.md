@@ -41,7 +41,8 @@ try to keep those notes concise!
 ```commandline
 pip install qlm
 qlm connect 'username/repo'
-echo '# My notes' > my_note.md
+qlm config --local-repo 'folder_with_notes'
+echo '# My notes' > 'folder_with_notes/my_note.md'
 qlm add my_note.md
 qlm show my_note.md
 ```

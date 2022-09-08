@@ -55,7 +55,9 @@ Then, you can create, save and display notes in your terminal
     <span data-ty="input">qlm config --local-repo 'folder to keep notes in'</span>
     <span data-ty="input">echo '# Example' > example.md</span>
     <span data-ty="input">qlm add example.md</span>
+    <span data-ty="input">qlm ls</span>
     <span data-ty="input">qlm show example.md</span>
+    <span data-ty="input">qlm edit example.md</span>
 </div>
 
 
@@ -65,7 +67,7 @@ Then, you can create, save and display notes in your terminal
 run `qlm publish` to add them to your remote.
 
 <div id="termynal" data-termynal>
-    <span data-ty="input">qlm offline 'folder to keep notes in'</span>
+    <span data-ty="input">qlm offline 'folder_with_notes'</span>
     <span data-ty="input">echo '# Example' > folder_with_notes/example.md</span>
     <span data-ty="input">qlm add example.md</span>
     <span data-ty="input">qlm connect 'username/repo'</span>
