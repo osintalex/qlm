@@ -1,6 +1,5 @@
 """Command to list files in a remote repo."""
 
-import os
 from typing import List, Optional, cast
 
 from httpx import Response
@@ -40,7 +39,7 @@ def ls(
         remote: str = cast(str, get_config(key="remote_repo"))
         github_token: str = validate_github_pat_token()
         if not directory:
-            directory = os.getcwd()
+            directory = ""
         response: Response = get_files_in_github_repo(
             github_token=github_token, remote=remote, directory_path=directory
         )

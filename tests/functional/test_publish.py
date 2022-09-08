@@ -18,6 +18,14 @@ def test_publish_no_token(runner, online_mode, offline_files):
     delete_config(key="offline_files_to_add")
 
 
+def test_publish_no_offline_files(runner, online_mode):
+    result = runner.invoke(app, ["publish"])
+    assert result.exit_code == 0
+    assert (
+        "You haven't yet set a value for the key offline_files_to_add" in result.stdout
+    )
+
+
 def test_publish(runner, online_mode, offline_files, fake_pat, mock_publish_files):
     result = runner.invoke(app, ["publish", "-f"])
     assert result.exit_code == 0

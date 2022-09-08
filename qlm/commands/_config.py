@@ -58,7 +58,7 @@ def config(
         help="Don't print out a specific key in the configuration output",
     ),
     offline: str = Option(
-        True, "--offline", "-o", help="Set offline to True or False. Defaults to True."
+        "", "--offline", "-o", help="Set offline to True or False. Defaults to True."
     ),
 ) -> None:
     """

@@ -29,7 +29,6 @@ def set_config(key: str, value: Union[str, bool, List[Dict[str, str]]]) -> None:
     :param key: the name of the config key to set the value of.
     :param value: the value to set it to.
     """
-
     with open(config_filepath, "r", encoding="utf-8") as f:
         config_data: ConfigType = json.load(f)
     config_data[key] = value
@@ -52,6 +51,7 @@ def get_config(key: str) -> Optional[Union[str, bool, List[Dict[str, str]]]]:
         print(
             Panel(
                 f"[bold red1]Oh no :worried: You haven't yet set a value for the key [cyan]{key}"
+                "[bold red1] You can set it with [bold cyan]qlm config"
             )
         )
         raise Exit
@@ -69,7 +69,11 @@ def delete_config(key: str) -> None:
     try:
         config_data.pop(key)
     except KeyError:
-        print(Panel(f"[bold red1]You haven't set the key {key} yet :cry:"))
+        print(
+            Panel(
+                f"[bold red1]You haven't set the key {key} yet :cry: You can set it with [bold cyan]qlm config"
+            )
+        )
         raise Exit()
     with open(config_filepath, "w", encoding="utf-8") as f:
         json.dump(config_data, f)
