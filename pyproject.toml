@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qlm"
-version = "0.0.2"
+version = "0.0.3"
 description = "A command line app for taking beautiful notes."
 documentation = "https://osintalex.github.io/qlm/"
 authors = ["Alexander Darby <63904626+osintalex@users.noreply.github.com>"]
