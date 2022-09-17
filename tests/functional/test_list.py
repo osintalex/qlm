@@ -23,7 +23,10 @@ def test_list_markdown(runner, fake_pat, online_mode, remote_repo, mock_get_file
     class DummyResponse:
         @staticmethod
         def json():
-            return [{"name": "peeka.md"}, {"name": "boo.md"}]
+            return [
+                {"name": "peeka.md", "type": "file"},
+                {"name": "boo.md", "type": "file"},
+            ]
 
     mock_get_files.return_value = DummyResponse
     result = runner.invoke(app, ["ls", "ceci n'est pas un file"])
@@ -37,7 +40,10 @@ def test_list_markdown_no_input(
     class DummyResponse:
         @staticmethod
         def json():
-            return [{"name": "peeka.md"}, {"name": "boo.md"}]
+            return [
+                {"name": "peeka.md", "type": "file"},
+                {"name": "boo.md", "type": "file"},
+            ]
 
     mock_get_files.return_value = DummyResponse
     result = runner.invoke(app, ["ls"])
@@ -49,7 +55,10 @@ def test_list_non_markdown(runner, fake_pat, online_mode, remote_repo, mock_get_
     class DummyResponse:
         @staticmethod
         def json():
-            return [{"name": "peeka.md"}, {"name": "chu"}]
+            return [
+                {"name": "peeka.md", "type": "file"},
+                {"name": "chu", "type": "file"},
+            ]
 
     mock_get_files.return_value = DummyResponse
     result = runner.invoke(app, ["ls", "ceci n'est pas un file", "-nm"])
