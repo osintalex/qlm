@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../images/pen.svg" rel="icon"/>
+<meta content="mkdocs-1.3.1, mkdocs-material-8.4.2" name="generator"/>
+<title>Commands - qlm</title>
+<link href="../assets/stylesheets/main.69437709.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../css/termynal.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="amber" data-md-color-primary="deep-orange" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#commands">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-component="outdated" hidden="">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="qlm" class="md-header__button md-logo" data-md-component="logo" href=".." title="qlm">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44-.02.49-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3v-3.75Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            qlm
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Commands
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-hidden="true" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="deep-orange" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/osintalex/qlm" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="qlm" class="md-nav__button md-logo" data-md-component="logo" href=".." title="qlm">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44-.02.49-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3v-3.75Z"></path></svg>
+</a>
+    qlm
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/osintalex/qlm" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../introduction/">
+        Introduction
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Commands
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Commands
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#qlm-help-or-qlm">
+    qlm --help or qlm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add">
+    add
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#config">
+    config
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connect">
+    connect
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create">
+    create
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#download">
+    download
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#edit">
+    edit
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get">
+    get
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ls">
+    ls
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offline">
+    offline
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#publish">
+    publish
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rm">
+    rm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#show">
+    show
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../contributing/">
+        Contributing
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#qlm-help-or-qlm">
+    qlm --help or qlm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add">
+    add
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#config">
+    config
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connect">
+    connect
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create">
+    create
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#download">
+    download
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#edit">
+    edit
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get">
+    get
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ls">
+    ls
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offline">
+    offline
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#publish">
+    publish
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rm">
+    rm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#show">
+    show
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/osintalex/qlm/edit/master/docs/commands.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="commands">Commands</h1>
+<h2 id="qlm-help-or-qlm"><code>qlm --help</code> or <code>qlm</code></h2>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ [OPTIONS] COMMAND [ARGS]...
+</code></pre>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>--install-completion</code>: Install completion for the current shell.</li>
+<li><code>--show-completion</code>: Show completion for the current shell, to copy it or customize the installation.</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<p><strong>Commands</strong>:</p>
+<ul>
+<li><code>add</code>: Add file(s) to your github remote</li>
+<li><code>config</code>: Display and edit your current configuration</li>
+<li><code>connect</code>: Checks if you can connect to github</li>
+<li><code>create</code>: Creates and connects to a new private repository</li>
+<li><code>download</code>: Downloads your notes from a remote</li>
+<li><code>edit</code>: Edit a file</li>
+<li><code>get</code>: Download a file from your remote</li>
+<li><code>ls</code>: Lists markdown files in your remote.</li>
+<li><code>offline</code>: Switch to working in offline mode</li>
+<li><code>publish</code>: Publishes files that were saved while offline</li>
+<li><code>rm</code>: Removes a file</li>
+<li><code>show</code>: Prints your file to the console</li>
+</ul>
+<h2 id="add"><code>add</code></h2>
+<p>Add file(s) to your github remote from your local repo. Accepts wildcards with glob syntax like
+'*.md'.</p>
+<p>If you're offline, qlm records this in your configuration. You can see which files qlm has stored by running
+qlm config.</p>
+<p>You can add them all to github later by running <code>qlm publish</code>.</p>
+<p>You can empty this list of files by running <code>qlm config --empty-offline</code>. Or you can use
+<code>git</code> yourself to send files to your remote!</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ add [OPTIONS] FILES
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>FILES</code>: The path to the file you want to add. Accepts wildcard syntax, i.e. myfolder/*.md  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-f, --force</code>: Don't prompt before adding files  [default: False]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="config"><code>config</code></h2>
+<p>Display and edit your current configuration</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ config [OPTIONS]
+</code></pre>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-e, --editor TEXT</code>: The command to open the text editor you want to use, i.e. nano or vim</li>
+<li><code>-eo, --empty-offline</code>: Empty the list of offline files to add with qlm publish. If you want more granular control of these files, it's probably best to empty them and then manually add them to them github using git on the command line  [default: False]</li>
+<li><code>-lr, --local-repo TEXT</code>: The absolute path to the local directory you want to keep your files in.</li>
+<li><code>-rr, --remote-repo TEXT</code>: The full name of the remote repo you want to use, i.e. username/repo</li>
+<li><code>-hk, --hide-key TEXT</code>: Don't print out a specific key in the configuration output</li>
+<li><code>-o, --offline TEXT</code>: Set offline to True or False. Defaults to True.  [default: True]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="connect"><code>connect</code></h2>
+<p>Checks if you can connect to github and sets your config to online. You must set the environment variable
+$qlm_token to connect.</p>
+<p>You must specify the full name of the repo in the format username/repo. If you don't, qlm will attempt to find
+the repo under your personal account username.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ connect [OPTIONS] REMOTE
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>REMOTE</code>: The name of the remote github repository where your notes are, e.g. my-username/repo-name  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="create"><code>create</code></h2>
+<p>Creates and connects to a new repository in github under your personal account. The repository is private by default
+because privacy matters</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ create [OPTIONS] REPO_NAME
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>REPO_NAME</code>: The name of the new repo to create  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-p, --public</code>: Make a public, not private repository  [default: False]</li>
+<li><code>-f, --force</code>: Don't prompt before creating a new repo  [default: False]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="download"><code>download</code></h2>
+<p>Downloads your notes from a remote to a local repository. Online only command</p>
+<p>To switch into online mode, run qlm connect.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ download [OPTIONS] LOCAL
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>LOCAL</code>: The absolute path to where you want to keep your notes  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-r, --remote TEXT</code>: The name of the remote you want to download files from. Defaults to whatever is in your config.</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="edit"><code>edit</code></h2>
+<p>Edit a file</p>
+<p>Uses vim by default. You can change the text editor using qlm config --editor.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ edit [OPTIONS] FILE
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>FILE</code>: The path to the file you want to edit relative to remote or local repo root.  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="get"><code>get</code></h2>
+<p>Download a file from your remote</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ get [OPTIONS] FILE
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>FILE</code>: Path to the remote file you want to download  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-r, --rename TEXT</code>: Rename the file you want to download</li>
+<li><code>-d, --directory TEXT</code>: The local directory to save the file to. If not specified, qlm will download the file to your current working directory.</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="ls"><code>ls</code></h2>
+<p>Lists markdown files in your remote. Online only</p>
+<p>To switch into online mode, run qlm connect.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ ls [OPTIONS] [DIRECTORY]
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>[DIRECTORY]</code>: The directory you want to list the contents of. Defaults to the repo root if omitted.</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-nm, --non-markdown</code>: Also list files that aren't markdown  [default: False]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="offline"><code>offline</code></h2>
+<p>Switch to working in offline mode with a local directory</p>
+<p>If you want to add your work to a remote later, use qlm publish.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ offline [OPTIONS] LOCAL
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>LOCAL</code>: The absolute path to the local directory where you want to keep your notes  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="publish"><code>publish</code></h2>
+<p>Publishes files that were saved in offline mode using qlm add</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ publish [OPTIONS]
+</code></pre>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-f, --force</code>: Publish files without prompting for confirmation  [default: False]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="rm"><code>rm</code></h2>
+<p>Removes a file</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ rm [OPTIONS] FILE
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>FILE</code>: The file you want to remove  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-f, --force</code>: Remove the file without prompting for confirmation  [default: False]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+<h2 id="show"><code>show</code></h2>
+<p>Prints your file to the console. Looks much nicer if you use markdown</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-console">$ show [OPTIONS] FILE
+</code></pre>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>FILE</code>: The path to the file you want see.  [required]</li>
+</ul>
+<p><strong>Options</strong>:</p>
+<ul>
+<li><code>-nm, --no-markup</code>: Print a file out without rendering markdown.  [default: False]</li>
+<li><code>--help</code>: Show this message and exit.</li>
+</ul>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Introduction" class="md-footer__link md-footer__link--prev" href="../introduction/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+</div>
+</a>
+<a aria-label="Next: Contributing" class="md-footer__link md-footer__link--next" href="../contributing/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Contributing
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+<script src="../js/termynal.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "width": "100%", "height": "auto", "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+</html>
