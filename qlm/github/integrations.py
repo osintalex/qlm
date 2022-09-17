@@ -138,7 +138,7 @@ def get_files_in_github_repo(
         print(f"This is your current configuration: {show_configuration()}")
         print(
             Panel(
-                f"[bold red1]Could not get contents at [yellow]{directory_path}[/yellow] in repo"
+                f"[bold red1]Could not get contents at [yellow]{directory_path}[/yellow] in repo "
                 f"[yellow]{remote}[/yellow] :x: Error code : [bold cyan]{response.status_code}[/bold cyan]"
             )
         )

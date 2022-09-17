@@ -52,7 +52,10 @@ def ls(
             raise Exit()
         file_list: List[str] = [x["name"] for x in response.json()]
         filtered: List[str] = filter_for_markdown_files_only(file_list)
+        directories: List[str] = [
+            f"{x['name']}/" for x in response.json() if x["type"] == "dir"
+        ]
         if non_markdown:
-            print(file_list)
+            print(file_list + directories)
         else:
-            print(filtered)
+            print(filtered + directories)

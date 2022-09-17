@@ -27,7 +27,6 @@ def edit(
 
     Uses vim by default. You can change the text editor using [bold cyan]qlm config --editor.
     """
-
     if is_offline():
         local_repo: str = cast(str, get_config(key="local_repo"))
         path_to_file_for_editing: str = os.path.join(local_repo, file)
@@ -58,16 +57,16 @@ def edit(
             with open(tmp.name, "w", encoding="utf-8") as f:
                 f.write(b64decode(response.json()["content"]).decode())
                 f.seek(0)
-        os.system(f"{get_config(key='editor')} {tmp.name}")
-        asyncio.run(
-            add_files_to_github(
-                files_to_publish=[
-                    {
-                        "local_filepath": tmp.name,
-                        "repo_filepath": file,
-                        "remote": remote,
-                    }
-                ],
-                github_token=github_token,
+            os.system(f"{get_config(key='editor')} {tmp.name}")
+            asyncio.run(
+                add_files_to_github(
+                    files_to_publish=[
+                        {
+                            "local_filepath": tmp.name,
+                            "repo_filepath": file,
+                            "remote": remote,
+                        }
+                    ],
+                    github_token=github_token,
+                )
             )
-        )

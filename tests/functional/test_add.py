@@ -1,8 +1,7 @@
 import os
 
 from qlm.main import app
-from qlm.tools.config_helpers import (delete_config, get_config,
-                                      show_configuration)
+from qlm.tools.config_helpers import delete_config, get_config, show_configuration
 
 
 def test_add_no_local(runner):
